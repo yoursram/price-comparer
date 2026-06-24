@@ -4,10 +4,8 @@ import requests
 from flask import Flask, render_template, request, jsonify
 from collections import defaultdict
 from concurrent.futures import ThreadPoolExecutor
-from dotenv import load_dotenv
 
-# Load environment variables from a .env file
-load_dotenv()
+
 
 # Import your scraper functions
 # Assuming they are in a folder named 'scrapers'

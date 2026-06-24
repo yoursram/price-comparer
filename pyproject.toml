@@ -1,0 +1,2 @@
+[tool.pyrefly]
+python-interpreter-path = "price-comparator/venv/Scripts/python.exe"

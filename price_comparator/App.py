@@ -4,7 +4,8 @@ import requests
 from flask import Flask, render_template, request, jsonify
 from collections import defaultdict
 from concurrent.futures import ThreadPoolExecutor
-
+import sys
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 # Import your scraper functions
 # Assuming they are in a folder named 'scrapers'

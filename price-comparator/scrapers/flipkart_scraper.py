@@ -14,24 +14,35 @@ def scrape_flipkart(product_name):
         
         soup = BeautifulSoup(response.content, "lxml")
         
-        product_div = soup.find('div', {'class': 'DOjaWF'})
+        # Try finding individual product container class 'jIjQ8S' (list view) first
+        product_div = soup.find('div', {'class': 'jIjQ8S'})
+        
+        # Fallback to the old list container DOjaWF
+        if not product_div:
+            product_div = soup.find('div', {'class': 'DOjaWF'})
+            
         if not product_div:
             return None
 
-        # Title scraping logic is no longer needed
+        # Title: in list view, the title is inside class 'RG5Slk'
+        title_tag = product_div.find(class_='RG5Slk')
+        title = title_tag.text.strip() if title_tag else product_name
 
-        price_tag = product_div.find('div', {'class': 'Nx9bqj'})
+        # Price: search for updated class 'hZ3P6w' or standard 'Nx9bqj'
+        price_tag = product_div.find(class_=lambda x: x and ('hZ3P6w' in x or 'Nx9bqj' in x))
         price = price_tag.text.strip() if price_tag else "Price not found"
 
-        rating_tag = product_div.find('div', {'class': 'XQDdHH'})
+        # Rating: search for updated class 'CjyrHS', 'MKiFS6', or standard 'XQDdHH'
+        rating_tag = product_div.find(class_=lambda x: x and ('CjyrHS' in x or 'MKiFS6' in x or 'XQDdHH' in x))
         rating = rating_tag.text.strip() if rating_tag else "Rating not found"
 
-        link_tag = product_div.find('a', {'class': 'wU_t2p'})
+        # Link: find first anchor tag inside product container
+        link_tag = product_div.find('a', href=True)
         product_url = "https://www.flipkart.com" + link_tag['href'] if link_tag else "URL not found"
 
         return {
             "platform": "Flipkart",
-            "title": product_name,  # Use the user's input directly as the title
+            "title": title,  # Use the parsed title
             "price": price,
             "rating": rating,
             "url": product_url

@@ -13,8 +13,8 @@ load_dotenv()
 # Assuming they are in a folder named 'scrapers'
 from scrapers.amazon_scraper import scrape_amazon
 from scrapers.flipkart_scraper import scrape_flipkart
-from scrapers.croma_scraper import scrape_croma
-from scrapers.reliancedigital_scraper import scrape_reliancedigital
+
+
 
 app = Flask(__name__)
 
@@ -41,7 +41,7 @@ def search():
         return jsonify({"error": "A search query is required."}), 400
 
     # List of scraper functions to run
-    scrapers = [scrape_amazon, scrape_flipkart, scrape_croma, scrape_reliancedigital]
+    scrapers = [scrape_amazon, scrape_flipkart]
     all_results = []
 
     # Use a ThreadPoolExecutor to run scrapers concurrently

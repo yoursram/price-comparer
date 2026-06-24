@@ -1,14 +1,14 @@
 {
   "builds": [
     {
-      "src": "price-comparator/App.py",
+      "src": "price_comparator/App.py",
       "use": "@vercel/python"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "price-comparator/App.py"
+      "dest": "price_comparator/App.py"
     }
   ]
 }

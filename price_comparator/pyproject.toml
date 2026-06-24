@@ -1,3 +1,15 @@
+[project]
+name = "price-comparator"
+version = "0.1.0"
+dependencies = [
+    "Flask",
+    "requests",
+    "beautifulsoup4",
+    "lxml",
+    "selenium",
+    "webdriver-manager"
+]
+
 [tool.pyrefly]
 python-interpreter-path = "venv/Scripts/python.exe"
 

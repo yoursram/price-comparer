@@ -1,0 +1,14 @@
+{
+  "builds": [
+    {
+      "src": "price-comparator/App.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "price-comparator/App.py"
+    }
+  ]
+}

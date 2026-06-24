@@ -6,7 +6,6 @@ from collections import defaultdict
 from concurrent.futures import ThreadPoolExecutor
 
 
-
 # Import your scraper functions
 # Assuming they are in a folder named 'scrapers'
 from scrapers.amazon_scraper import scrape_amazon

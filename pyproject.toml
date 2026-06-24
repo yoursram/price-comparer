@@ -1,2 +1,5 @@
 [tool.pyrefly]
 python-interpreter-path = "price-comparator/venv/Scripts/python.exe"
+
+[tool.vercel]
+entrypoint = "price-comparator.App:app"
